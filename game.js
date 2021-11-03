@@ -30,7 +30,8 @@ function start() {
 function moveBear(e) {
 	//codes of the four keys
 	const KEYUP = 38;
-	const KEYDOWN = 40; const KEYLEFT = 37;
+	const KEYDOWN = 40;
+	const KEYLEFT = 37;
 	const KEYRIGHT = 39;
 
 	if (e.keyCode == KEYRIGHT) {
