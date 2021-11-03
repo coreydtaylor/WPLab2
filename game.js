@@ -43,3 +43,9 @@ function moveBear(e) {
     bear.move(0, 1)
   } // down key
 }
+
+function start() {
+  //create bear bear = new Bear();
+  // Add an event listener to the keypress event.
+  document.addEventListener("keydown", moveBear, false);
+}
