@@ -21,15 +21,15 @@ function Bear() {
 
 function start() {
   //create bear
-  bear = new Bear();
+  let bear = new Bear();
   // Add an event listener to the keypress event.
   document.addEventListener("keydown", moveBear, false);
   //create new array for bees
-  bees = new Array();
+  let bees = new Array();
   //create bees
   makeBees();
   //take start time
-  lastStingTime = new Date();
+  let lastStingTime = new Date();
 }
 
 // Handle keyboad events
@@ -41,16 +41,16 @@ function moveBear(e) {
   const KEYLEFT = 37;
   const KEYRIGHT = 39;
 
-  if (e.keyCode == KEYRIGHT) {
+  if (e.keyCode === KEYRIGHT) {
     bear.move(1, 0);
   } // right key
-  if (e.keyCode == KEYLEFT) {
+  if (e.keyCode === KEYLEFT) {
     bear.move(-1, 0);
   } // left key
-  if (e.keyCode == KEYUP) {
+  if (e.keyCode === KEYUP) {
     bear.move(0, -1);
   } // up key
-  if (e.keyCode == KEYDOWN) {
+  if (e.keyCode === KEYDOWN) {
     bear.move(0, 1);
   } // down key
 }
@@ -199,21 +199,31 @@ function isHit(defender, offender) {
 function overlap(element1, element2) {
   //consider the two rectangles wrapping the two elements
   //rectangle of the first element
-  left1 = element1.htmlElement.offsetLeft;
-  top1 = element1.htmlElement.offsetTop;
-  right1 = element1.htmlElement.offsetLeft + element1.htmlElement.offsetWidth;
-  bottom1 = element1.htmlElement.offsetTop + element1.htmlElement.offsetHeight;
+  let left1 = element1.htmlElement.offsetLeft;
+  let top1 = element1.htmlElement.offsetTop;
+  let right1 =
+    element1.htmlElement.offsetLeft + element1.htmlElement.offsetWidth;
+  let bottom1 =
+    element1.htmlElement.offsetTop + element1.htmlElement.offsetHeight;
   //rectangle of the second element
-  left2 = element2.htmlElement.offsetLeft; //e2x
-  top2 = element2.htmlElement.offsetTop; //e2y
-  right2 = element2.htmlElement.offsetLeft + element2.htmlElement.offsetWidth;
-  bottom2 = element2.htmlElement.offsetTop + element2.htmlElement.offsetHeight;
+  let left2 = element2.htmlElement.offsetLeft; //e2x
+  let top2 = element2.htmlElement.offsetTop; //e2y
+  let right2 =
+    element2.htmlElement.offsetLeft + element2.htmlElement.offsetWidth;
+  let bottom2 =
+    element2.htmlElement.offsetTop + element2.htmlElement.offsetHeight;
   //calculate the intersection of the two rectangles
-  x_intersect = Math.max(0, Math.min(right1, right2) - Math.max(left1, left2));
-  y_intersect = Math.max(0, Math.min(bottom1, bottom2) - Math.max(top1, top2));
-  intersectArea = x_intersect * y_intersect;
+  let x_intersect = Math.max(
+    0,
+    Math.min(right1, right2) - Math.max(left1, left2)
+  );
+  let y_intersect = Math.max(
+    0,
+    Math.min(bottom1, bottom2) - Math.max(top1, top2)
+  );
+  let intersectArea = x_intersect * y_intersect;
   //if intersection is nil no hit
-  if (intersectArea == 0 || isNaN(intersectArea)) {
+  if (intersectArea === 0 || isNaN(intersectArea)) {
     return false;
   }
   return true;
