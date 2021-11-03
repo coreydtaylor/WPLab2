@@ -12,9 +12,9 @@ function Bear() {
 	};
 
 	this.display = function() {
-	this.htmlElement.style.left = this.x + "px";
-	this.htmlElement.style.top = this.y + "px";
-	this.htmlElement.style.display = "absolute";
+		this.htmlElement.style.left = this.x + "px";
+		this.htmlElement.style.top = this.y + "px";
+		this.htmlElement.style.display = "absolute";
 	};
 }
 
