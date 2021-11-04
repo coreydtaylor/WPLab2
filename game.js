@@ -1,4 +1,5 @@
 function start() {
+  console.log("test");
   //create bear
   bear = new Bear();
   // Add an event listener to the keypress event.
@@ -13,7 +14,7 @@ function start() {
 }
 
 class Bear {
-  constructor(Bear) {
+  constructor() {
     this.dBear = Number(document.getElementById("bearSpeed").value);
     this.htmlElement = document.getElementById("bear");
     this.id = this.htmlElement.id;
@@ -21,6 +22,7 @@ class Bear {
     this.y = this.htmlElement.offsetTop;
 
     this.move = function (xDir, yDir) {
+      console.log("move");
       this.x += this.dBear * xDir;
       this.y += this.dBear * yDir;
       this.fitBounds();
@@ -54,6 +56,7 @@ class Bear {
 // Handle keyboad events
 // to move the bear
 function moveBear(e) {
+  console.log("test2");
   //codes of the four keys
   const KEYUP = 38;
   const KEYDOWN = 40;
@@ -61,19 +64,19 @@ function moveBear(e) {
   const KEYRIGHT = 39;
 
   if (e.keyCode === KEYRIGHT) {
-    Bear.move(1, 0);
+    bear.move(1, 0);
     console.log("right");
   } // right key
   if (e.keyCode === KEYLEFT) {
-    Bear.move(-1, 0);
+    bear.move(-1, 0);
     console.log("left");
   } // left key
   if (e.keyCode === KEYUP) {
-    Bear.move(0, -1);
+    bear.move(0, -1);
     console.log("up");
   } // up key
   if (e.keyCode === KEYDOWN) {
-    Bear.move(0, 1);
+    bear.move(0, 1);
     console.log("down");
   } // down key
 }
@@ -211,6 +214,9 @@ function updateBees() {
 }
 
 function changeBees() {
+  while (bees.length > 0) {
+    bees.pop();
+  }
   makeBees();
 }
 
