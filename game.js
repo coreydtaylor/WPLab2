@@ -4,25 +4,26 @@ function start() {
   // Add an event listener to the keypress event.
   document.addEventListener("keydown", moveBear, false);
   //create new array for bees
-  bees = [document.getElementById("nbBees").value];
+  bees = [];
   //create bees
   makeBees();
+  updateBees();
   //take start time
   lastStingTime = new Date();
 }
 
 class Bear {
   constructor(Bear) {
-    this.dBear = 100;
+    this.dBear = Number(document.getElementById("bearSpeed").value);
     this.htmlElement = document.getElementById("bear");
     this.id = this.htmlElement.id;
     this.x = this.htmlElement.offsetLeft;
     this.y = this.htmlElement.offsetTop;
 
     this.move = function (xDir, yDir) {
-      this.fitBounds();
       this.x += this.dBear * xDir;
       this.y += this.dBear * yDir;
+      this.fitBounds();
       this.display(this.x, this.y);
     };
 
@@ -30,6 +31,10 @@ class Bear {
       this.htmlElement.style.left = this.x + "px";
       this.htmlElement.style.top = this.y + "px";
       this.htmlElement.style.display = "absolute";
+    };
+
+    this.setSpeed = function () {
+      this.dBear = Number(document.getElementById("bearSpeed").value);
     };
     this.fitBounds = function () {
       let parent = this.htmlElement.parentElement;
@@ -57,18 +62,19 @@ function moveBear(e) {
 
   if (e.keyCode === KEYRIGHT) {
     Bear.move(1, 0);
+    console.log("right");
   } // right key
   if (e.keyCode === KEYLEFT) {
     Bear.move(-1, 0);
-    this.display();
+    console.log("left");
   } // left key
   if (e.keyCode === KEYUP) {
     Bear.move(0, -1);
-    this.display();
+    console.log("up");
   } // up key
   if (e.keyCode === KEYDOWN) {
     Bear.move(0, 1);
-    this.display();
+    console.log("down");
   } // down key
 }
 
@@ -95,9 +101,7 @@ class Bee {
       this.htmlElement.style.top = this.y + "px";
       this.htmlElement.style.display = "block";
     };
-
     this.fitBounds = function () {
-      //check and make sure the bees stays in the board space
       let parent = this.htmlElement.parentElement;
       let iw = this.htmlElement.offsetWidth;
       let ih = this.htmlElement.offsetHeight;
@@ -201,13 +205,12 @@ function updateBees() {
   //move the bees randomly
   moveBees();
   //use a fixed update period
-  let period = 10;
+  let period = "periodTimer";
   //update the timer for the next move
   let updateTimer = setTimeout(updateBees(), period);
 }
 
 function changeBees() {
-  bees = [];
   makeBees();
 }
 
